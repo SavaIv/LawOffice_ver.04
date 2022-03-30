@@ -1,4 +1,5 @@
-﻿using LawOffice.Models;
+﻿using LawOffice.Core.Constants;
+using LawOffice.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,6 +16,10 @@ namespace LawOffice.Controllers
 
         public IActionResult Index()
         {
+            ViewData[MessageConstants.SuccessMessage] = "Браво, успяхме да подкараме тостера!";
+            //ViewData[MessageConstants.ErrorMessage] = "Лошо, нещо се счупи!";
+            //ViewData[MessageConstants.WarningMessage] = "Внимавай, на път си да настъпиш котето!";
+
             return View();
         }
 
