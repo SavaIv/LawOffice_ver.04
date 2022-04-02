@@ -1,5 +1,5 @@
 using LawOffice.Core.Constants;
-using LawOffice.Data;
+using LawOffice.Infrastructure.Data;
 using LawOffice.ModelBinders;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

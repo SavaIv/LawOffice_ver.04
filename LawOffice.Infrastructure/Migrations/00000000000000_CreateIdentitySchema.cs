@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace LawOffice.Data.Migrations
+namespace LawOffice.Infrastructure.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {
