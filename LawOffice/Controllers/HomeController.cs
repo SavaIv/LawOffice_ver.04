@@ -16,8 +16,8 @@ namespace LawOffice.Controllers
 
         public IActionResult Index()
         {
-            ViewData[MessageConstants.SuccessMessage] = "Браво, успяхме да подкараме тостера!";
-            //ViewData[MessageConstants.ErrorMessage] = "Лошо, нещо се счупи!";
+            ViewData[MessageConstants.SuccessMessage] = "Дотук добре!";
+            //ViewData[MessageConstants.ErrorMessage] = "Лошо! Нещо се счупи!";
             //ViewData[MessageConstants.WarningMessage] = "Внимавай, на път си да настъпиш котето!";
 
             return View();
