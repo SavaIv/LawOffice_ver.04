@@ -10,6 +10,11 @@ namespace LawOffice.Infrastructure.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<Case> Cases { get; set; }
         public DbSet<Instance> Instances { get; set; }
         public DbSet<OutsideDocument> OutsideDocuments { get; set; }
