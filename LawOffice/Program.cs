@@ -1,5 +1,6 @@
 using LawOffice.Core.Constants;
 using LawOffice.Infrastructure.Data;
+using LawOffice.Infrastructure.Data.Identity;
 using LawOffice.Infrastructure.Data.Repositories;
 using LawOffice.ModelBinders;
 using Microsoft.AspNetCore.Identity;
@@ -9,11 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+    {   options.SignIn.RequireConfirmedAccount = true;
+        //options.Password.RequireDigit = true;
+    })
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews()

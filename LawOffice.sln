@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawOffice", "LawOffice\LawOffice.csproj", "{AB25B672-737C-41A3-AC39-C7DA3EA670ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawOffice", "LawOffice\LawOffice.csproj", "{AB25B672-737C-41A3-AC39-C7DA3EA670ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawOffice.Infrastructure", "LawOffice.Infrastructure\LawOffice.Infrastructure.csproj", "{125A5A4E-DF79-4F6F-B63B-3BD564E6907A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawOffice.Infrastructure", "LawOffice.Infrastructure\LawOffice.Infrastructure.csproj", "{125A5A4E-DF79-4F6F-B63B-3BD564E6907A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LawOffice.Core", "LawOffice.Core\LawOffice.Core.csproj", "{40BACDDB-327F-4629-B2EB-74B94F0B6D8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LawOffice.Core", "LawOffice.Core\LawOffice.Core.csproj", "{40BACDDB-327F-4629-B2EB-74B94F0B6D8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

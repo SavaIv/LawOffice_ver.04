@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using LawOffice.Infrastructure.Data.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LawOffice.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -11,7 +12,7 @@ namespace LawOffice.Infrastructure.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {            
             base.OnModelCreating(modelBuilder);
         }
 

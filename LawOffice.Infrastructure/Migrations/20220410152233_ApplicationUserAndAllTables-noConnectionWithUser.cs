@@ -5,10 +5,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LawOffice.Infrastructure.Migrations
 {
-    public partial class AllTablesAtOnceFirstCut : Migration
+    public partial class ApplicationUserAndAllTablesnoConnectionWithUser : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<string>(
+                name: "FirstName",
+                table: "AspNetUsers",
+                type: "nvarchar(50)",
+                maxLength: 50,
+                nullable: true);
+
+            migrationBuilder.AddColumn<string>(
+                name: "LastName",
+                table: "AspNetUsers",
+                type: "nvarchar(50)",
+                maxLength: 50,
+                nullable: true);
+
             migrationBuilder.CreateTable(
                 name: "Cases",
                 columns: table => new
@@ -16,18 +30,11 @@ namespace LawOffice.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     InsideCaseNumber = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     InsideCaseName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CaseDescription = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cases", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Cases_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,18 +59,11 @@ namespace LawOffice.Infrastructure.Migrations
                     UrgencyType = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     TypeOfAnswer = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     ProblemDescription = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false),
-                    StatusOfTheOrder = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    StatusOfTheOrder = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,11 +137,6 @@ namespace LawOffice.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cases_UserId",
-                table: "Cases",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_InsideDocuments_InstanceId",
                 table: "InsideDocuments",
                 column: "InstanceId");
@@ -150,11 +145,6 @@ namespace LawOffice.Infrastructure.Migrations
                 name: "IX_Instances_CaseId",
                 table: "Instances",
                 column: "CaseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_UserId",
-                table: "Orders",
-                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OutsideDocuments_InstanceId",
@@ -181,6 +171,14 @@ namespace LawOffice.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cases");
+
+            migrationBuilder.DropColumn(
+                name: "FirstName",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "LastName",
+                table: "AspNetUsers");
         }
     }
 }

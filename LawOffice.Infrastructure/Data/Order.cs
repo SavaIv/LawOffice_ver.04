@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LawOffice.Infrastructure.Data.Identity;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,6 +36,6 @@ namespace LawOffice.Infrastructure.Data
         public string UserId { get; set; }
 
         [Required]
-        public virtual IdentityUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }
