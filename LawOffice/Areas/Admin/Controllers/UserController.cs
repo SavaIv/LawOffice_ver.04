@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LawOffice.Controllers
+namespace LawOffice.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
@@ -22,24 +22,23 @@ namespace LawOffice.Controllers
             return View();
         }
 
-        // двата метода са преместени в Areas/Admin/Controllers/UserController.cs
+        [Authorize(Roles = UserConstants.Roles.Administrator)]
+        public async Task<IActionResult> ManageUsers()
+        {
+            var users = await service.GetUsers();
 
-        //[Authorize(Roles = UserConstants.Roles.Administrator)]
-        //public async Task<IActionResult> ManageUsers()
-        //{
-        //    var users = await service.GetUsers();
+            //return Ok(users);
+            return View(users);
+        }
 
-        //    return Ok(users);
-        //}
+        public async Task<IActionResult> CreateRole()
+        {
+            await roleManager.CreateAsync(new IdentityRole()
+            {
+                Name = "Administrator"
+            });
 
-        //public async Task<IActionResult> CreateRole()
-        //{
-        //    await roleManager.CreateAsync(new IdentityRole()
-        //    {
-        //        Name = "Administrator"
-        //    });
-
-        //    return Ok();
-        //}        
+            return Ok();
+        }
     }
 }
