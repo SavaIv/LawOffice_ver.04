@@ -18,7 +18,7 @@ namespace LawOffice.Controllers
         {
             ViewData[MessageConstants.SuccessMessage] = "Дотук добре!";
             //ViewData[MessageConstants.ErrorMessage] = "Лошо! Нещо се счупи!";
-            //ViewData[MessageConstants.WarningMessage] = "Внимавай, на път си да настъпиш котето!";
+            //ViewData[MessageConstants.WarningMessage] = "Внимавай! Възможни са проблеми!";
 
             return View();
         }
