@@ -1,4 +1,6 @@
 using LawOffice.Core.Constants;
+using LawOffice.Core.Contracts;
+using LawOffice.Core.Services;
 using LawOffice.Infrastructure.Data;
 using LawOffice.Infrastructure.Data.Identity;
 using LawOffice.Infrastructure.Data.Repositories;
@@ -18,8 +20,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     {   options.SignIn.RequireConfirmedAccount = true;
-        //options.Password.RequireDigit = true;
+        options.Password.RequireDigit = true;
     })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddAuthentication()
@@ -37,7 +40,8 @@ builder.Services.AddControllersWithViews()
         options.ModelBinderProviders.Insert(2, new DateTimeModelBinderProvider(FormatingConstant.NormalDateFormat));
     });
 
-builder.Services.AddScoped<IApplicatioDbRepository, ApplicatioDbRepository>();
+builder.Services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
+builder.Services.AddScoped<IUserService,UserService>();
 
 var app = builder.Build();
 
