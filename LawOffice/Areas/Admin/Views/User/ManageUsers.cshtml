@@ -32,9 +32,11 @@
                     <td>@user.Name</td>
                     <td>@user.Email</td>
                     <td>
-                        <button type="button" asp-area="admin" asp-action="edit" asp-controller="user" asp-route-id="@user.Id" class="btn btn-block btn-outline-secondary btn-xs">User Info Edit</button>
-                        <button type="button" asp-area="admin" asp-action="roles" asp-controller="user" asp-route-id="@user.Id"class="btn btn-block btn-outline-secondary btn-xs">User Role Edit</button>
-                        <button type="button" onclick="location.href='/admin/user/edit'" asp-route-id="@user.Id" class="btn btn-block btn-outline-secondary btn-xs">Test Test Test</button>
+                        @*<button type="button" asp-area="admin" asp-action="edit" asp-controller="user" asp-route-id="@user.Id" class="btn btn-block btn-outline-secondary btn-xs">User Info Edit</button>*@
+                        @*<button type="button" asp-area="admin" asp-action="roles" asp-controller="user" asp-route-id="@user.Id"class="btn btn-block btn-outline-secondary btn-xs">User Role Edit</button>*@
+                        <a asp-area="admin" asp-action="edit" asp-controller="user" asp-route-id="@user.Id" class="btn btn-block btn-outline-info btn-xs">User <b>Info</b> Edit</a>
+                        <a asp-area="admin" asp-action="roles" asp-controller="user" asp-route-id="@user.Id" class="btn btn-block btn-outline-info btn-xs">User <b>Role</b> Edit</a>
+                        @*<button type="button" onclick="location.href='/admin/user/edit'" asp-route-id="@user.Id" class="btn btn-block btn-outline-secondary btn-xs">Test Test Test</button>*@
                     </td>
                 </tr>
             }

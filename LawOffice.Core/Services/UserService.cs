@@ -20,9 +20,23 @@ namespace LawOffice.Core.Services
             repo = _repo;
         }
 
+        public async Task<UserEditViewModel> GetUserForEdit(string id)
+        {
+            var user = await repo.GetByIdAsync<ApplicationUser>(id);
+
+            var theUser = new UserEditViewModel()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+
+            return theUser;
+        }
+
         public async Task<IEnumerable<UserListViewModel>> GetUsers()
         {
-            var users = repo.All<ApplicationUser>().
+            var users = await repo.All<ApplicationUser>().
                 Select(u => new UserListViewModel()
                 {
                     Email = u.Email,
@@ -31,7 +45,7 @@ namespace LawOffice.Core.Services
                 })
                 .ToListAsync();
 
-            return await users;
+            return users;
 
             //return await repo.All<ApplicationUser>()
             //    .Select(u => new UserListViewModel()
@@ -42,6 +56,23 @@ namespace LawOffice.Core.Services
             //    })
             //    .ToListAsync();
 
+
+        }
+        public async Task<bool> UpdateUser(UserEditViewModel model)
+        {
+            bool result = false;
+            var user = await repo.GetByIdAsync<ApplicationUser>(model.Id);
+
+            if (user != null)
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+
+                await repo.SaveChangesAsync();
+                result = true;
+            }
+
+            return result;
         }
     }
 }

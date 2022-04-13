@@ -1,9 +1,5 @@
 ﻿using LawOffice.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using LawOffice.Infrastructure.Data.Identity;
 
 namespace LawOffice.Core.Contracts
 {
@@ -11,6 +7,10 @@ namespace LawOffice.Core.Contracts
     {
         Task<IEnumerable<UserListViewModel>> GetUsers();
 
+        Task<UserEditViewModel> GetUserForEdit(string id);
 
+        Task<bool> UpdateUser(UserEditViewModel model);
+
+        Task<ApplicationUser> GetUserById(string id);
     }
 }
