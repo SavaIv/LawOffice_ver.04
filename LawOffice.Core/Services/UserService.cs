@@ -20,6 +20,11 @@ namespace LawOffice.Core.Services
             repo = _repo;
         }
 
+        public async Task<ApplicationUser> GetUserById(string id)
+        {
+            return await repo.GetByIdAsync<ApplicationUser>(id);
+        }
+
         public async Task<UserEditViewModel> GetUserForEdit(string id)
         {
             var user = await repo.GetByIdAsync<ApplicationUser>(id);

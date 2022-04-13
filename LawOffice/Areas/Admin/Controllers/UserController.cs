@@ -1,20 +1,27 @@
 ﻿using LawOffice.Core.Constants;
 using LawOffice.Core.Contracts;
 using LawOffice.Core.Models;
+using LawOffice.Infrastructure.Data.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LawOffice.Areas.Admin.Controllers
 {
     public class UserController : BaseController
     {
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserService service;
 
-        public UserController(RoleManager<IdentityRole> _roleManager, IUserService _service)
+        public UserController(
+            RoleManager<IdentityRole> _roleManager,
+            UserManager<ApplicationUser> _userManager,
+            IUserService _service)
         {
             roleManager = _roleManager;
+            userManager = _userManager;
             service = _service;
         }
 
@@ -34,9 +41,10 @@ namespace LawOffice.Areas.Admin.Controllers
 
         public async Task<IActionResult> CreateRole()
         {
+            // --> UnComment only when need to create new role <--
             //await roleManager.CreateAsync(new IdentityRole()
             //{
-            //    Name = "Administrator"
+            //    Name = "Personnel"
             //});
 
             return Ok();
@@ -66,7 +74,8 @@ namespace LawOffice.Areas.Admin.Controllers
                 ViewData[MessageConstants.ErrorMessage] = "Възникна грешка!";
             }
 
-            return View(model);
+            return RedirectToAction(nameof(ManageUsers));
+            //return View(model);
         }
 
         public async Task<IActionResult> Roles(string id)
@@ -86,9 +95,25 @@ namespace LawOffice.Areas.Admin.Controllers
                     Text = r.Name,
                     Value = r.Name,
                     Selected = userManager.IsInRoleAsync(user, r.Name).Result
-                }).ToList();
+                })
+                .ToList();
 
             return View(model);
         }
-    } 
+
+        [HttpPost]
+        public async Task<IActionResult> Roles(UserRolesViewModel model)
+        {
+            var user = await service.GetUserById(model.UserId);
+            var userRoles = await userManager.GetRolesAsync(user);
+            await userManager.RemoveFromRolesAsync(user, userRoles);
+
+            if (model.RoleNames?.Length > 0)
+            {
+                await userManager.AddToRolesAsync(user, model.RoleNames);
+            }
+
+            return RedirectToAction(nameof(ManageUsers));
+        }
+    }
 }
