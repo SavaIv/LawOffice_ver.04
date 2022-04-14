@@ -10,30 +10,56 @@
                 </p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="/admin/user/manageusers" class="nav-link">
-                <i class="fas fa-warehouse"></i>
-                <p>
-                    Admin Area
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/" class="nav-link">
-                <i class="fas fa-warehouse"></i>
-                <p>
-                    Home3
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/" class="nav-link">
-                <i class="fas fa-warehouse"></i>
-                <p>
-                    Home4
-                </p>
-            </a>
-        </li>
+        @if (User.IsInRole("Administrator"))
+        {
+            <li class="nav-item">
+                <a href="/admin/user/manageusers" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        Admin Area
+                    </p>
+                </a>
+            </li>   
+        }
+        @if (User.IsInRole("Personnel") && !User.IsInRole("Administrator"))
+        {
+            <li class="nav-item">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        WorkTask1
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        WorkTask2
+                    </p>
+                </a>
+            </li>
+        }
+        else if (!User.IsInRole("Personnel") && !User.IsInRole("Administrator"))
+        {
+            <li class="nav-item">
+                <a href="/client/info/D1EA78F6-3438-4A56-8A9C-7BC64BA9E887" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        Law1
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/client/info/1BC518BA-9F27-41A5-AB2E-DE71B9FD2822" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        Law2
+                    </p>
+                </a>
+            </li>
+        }
+
 
 
 
