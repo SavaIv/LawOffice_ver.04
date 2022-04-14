@@ -24,5 +24,10 @@ namespace LawOffice.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> ClientOrder()
+        {
+            return View();
+        }
+
     }
 }
