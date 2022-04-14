@@ -23,6 +23,12 @@ namespace LawOffice.Controllers
             return View();
         }
 
+        public IActionResult WelcomOnWork()
+        {            
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();

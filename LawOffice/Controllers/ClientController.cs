@@ -12,7 +12,7 @@ namespace LawOffice.Controllers
             service = _service;
         }
 
-        public IActionResult Index()
+        public IActionResult IndexClient()
         {
             return View();
         }

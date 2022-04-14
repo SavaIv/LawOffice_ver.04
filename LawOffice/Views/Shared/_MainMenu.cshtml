@@ -2,14 +2,6 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-        <li class="nav-item">
-            <a href="/" class="nav-link">
-                <i class="fas fa-warehouse"></i>
-                <p>
-                    Home
-                </p>
-            </a>
-        </li>
         @if (User.IsInRole("Administrator"))
         {
             <li class="nav-item">
@@ -24,7 +16,15 @@
         @if (User.IsInRole("Personnel") && !User.IsInRole("Administrator"))
         {
             <li class="nav-item">
-                <a href="/" class="nav-link">
+                <a href="/Home/WelcomOnWork" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        Home
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/Home/WelcomOnWork" class="nav-link">
                     <i class="fas fa-warehouse"></i>
                     <p>
                         WorkTask1
@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">
+                <a href="/Home/WelcomOnWork" class="nav-link">
                     <i class="fas fa-warehouse"></i>
                     <p>
                         WorkTask2
@@ -42,6 +42,14 @@
         }
         else if (!User.IsInRole("Personnel") && !User.IsInRole("Administrator"))
         {
+            <li class="nav-item">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        Home
+                    </p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="/client/info/D1EA78F6-3438-4A56-8A9C-7BC64BA9E887" class="nav-link">
                     <i class="fas fa-warehouse"></i>
@@ -55,6 +63,14 @@
                     <i class="fas fa-warehouse"></i>
                     <p>
                         Law2
+                    </p>
+                </a>
+            </li>
+             <li class="nav-item">
+                <a href="/" class="nav-link">
+                    <i class="fas fa-warehouse"></i>
+                    <p>
+                        Contact Us
                     </p>
                 </a>
             </li>
