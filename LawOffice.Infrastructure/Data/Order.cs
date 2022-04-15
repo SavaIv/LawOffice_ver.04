@@ -37,5 +37,7 @@ namespace LawOffice.Infrastructure.Data
 
         [Required]
         public virtual ApplicationUser User { get; set; }
+
+        public string? FeedBack { get; set; }
     }
 }

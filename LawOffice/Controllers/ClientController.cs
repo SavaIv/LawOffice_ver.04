@@ -21,6 +21,11 @@ namespace LawOffice.Controllers
             return View();
         }
 
+        public IActionResult ConfirmOrderSent()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> Info(Guid Id)
         {
             var model = await service.GetInfoById(Id);
@@ -59,7 +64,7 @@ namespace LawOffice.Controllers
 
             ViewData[MessageConstants.SuccessMessage] = "Your order is accepted!";
 
-            return RedirectToAction(nameof(IndexClient));
+            return RedirectToAction(nameof(ConfirmOrderSent));
         }
     }
 }
