@@ -1,13 +1,17 @@
 ﻿@using LawOffice.Core.Models
-@model ClientOrderViewMldel
+@using System.Security.Claims
+@model ClientOrderViewModel
 @{
     ViewData["Title"] = "Client Order";
+    //var theUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    //Model.UserId = theUserId;
+    //;
 }
 
 <div class="row">
     <div class="col-4">
         <form id="edit" method="post">
-            @*<input type="hidden" name="Id" value="@Model.Id" />*@
+            <input type="hidden" name="UserId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-floating">
                 <label asp-for="ProblemType" class="form-label"></label>
@@ -16,8 +20,18 @@
             </div>
             <div class="form-floating">
                 <label asp-for="UrgencyType" class="form-label"></label>
-                <input asp-for="UrgencyType" class="form-control" autocomplete="current-password" aria-required="true" />
+                <input asp-for="UrgencyType" class="form-control" aria-required="true" />
                 <span asp-validation-for="UrgencyType" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <label asp-for="TypeOfAnswer" class="form-label"></label>
+                <input asp-for="TypeOfAnswer" class="form-control" aria-required="true" />
+                <span asp-validation-for="TypeOfAnswer" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <label asp-for="ProblemDescription" class="form-label"></label>
+                <input asp-for="ProblemDescription" class="form-control" aria-required="true" />
+                <span asp-validation-for="ProblemDescription" class="text-danger"></span>
             </div>
             <div class="row">&nbsp;</div>
             <div class="row">

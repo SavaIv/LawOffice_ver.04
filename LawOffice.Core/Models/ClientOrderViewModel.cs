@@ -2,7 +2,7 @@
 
 namespace LawOffice.Core.Models
 {
-    public class ClientOrderViewMldel
+    public class ClientOrderViewModel
     {
         //public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -22,8 +22,10 @@ namespace LawOffice.Core.Models
         [Display(Name = "Problem Description")]
         public string ProblemDescription { get; set; }
 
-        //[Required]
-        //[StringLength(30)]
-        //public string StatusOfTheOrder { get; set; }
+        [Required]        
+        public string StatusOfTheOrder { get; set; } = "Pending";
+
+        [Required]
+        public string UserId { get; set; }
     }
 }
