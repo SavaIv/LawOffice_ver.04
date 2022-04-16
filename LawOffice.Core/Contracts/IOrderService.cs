@@ -11,5 +11,10 @@ namespace LawOffice.Core.Contracts
     public interface IOrderService
     {       
         Task<IEnumerable<OrderListViewModel>> GetOrders();
+
+        Task<OrderFeedbackViewModel> GetOrderForFeedback(Guid Id);
+
+        Task<bool> UpdateOrderFeedback(OrderFeedbackViewModel model);               
+                 
     }
 }

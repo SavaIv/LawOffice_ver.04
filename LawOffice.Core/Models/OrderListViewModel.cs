@@ -9,6 +9,8 @@ namespace LawOffice.Core.Models
 {
     public class OrderListViewModel
     {
+        public string Id { get; set; }
+
         [Display(Name = "Problem")]
         public string ProblemType { get; set; }
 

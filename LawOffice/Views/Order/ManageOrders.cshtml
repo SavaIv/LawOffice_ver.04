@@ -1,13 +1,13 @@
-﻿@*@using Warehouse.Core.Models*@
-@*@model IEnumerable<UserListViewModel>
-*@@{
+﻿@using LawOffice.Core.Models
+@model IEnumerable<OrderListViewModel>
+@{
 }
 
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Application Users</h3>
+                <h3 class="card-title">List of the orders</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -24,13 +24,32 @@
                 <table class="table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th>User</th>
-                            <th>Email</th>
-                            <th>Actions</th>
+                            <th>Problem</th>
+                            <th>Urgency</th>
+                            <th>Answer Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Client Name</th>                            
+                            <th>FeedBack</th>
+                            <th>Take Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+                                <td>@order.ProblemType</td>
+                                <td>@order.UrgencyType</td>
+                                <td>@order.TypeOfAnswer</td>
+                                <td>@order.ProblemDescription</td>
+                                <td>@order.StatusOfTheOrder</td>
+                                <td>@order.UserName</td>
+                                <td>@order.FeedBack</td>
+                                <td>
+                                    <a asp-action="feedback" asp-controller="order" asp-route-id="@order.Id" class="btn btn-block btn-outline-info btn-xs">Update feed back</a>                                    
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
